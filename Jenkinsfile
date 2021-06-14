@@ -8,6 +8,12 @@ pipeline {
                 sh "sudo npm run build"
             }
         }
+        stage("Test") {
+            agent { label 'ubuntu_jenkins' }
+            steps {
+                sh "sudo node -v"
+                sh "sudo npm -v"
+            }
         stage("Deploy") {
             agent { label 'ubuntu_jenkins' }
             steps {
