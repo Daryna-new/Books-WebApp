@@ -14,6 +14,7 @@ pipeline {
                 sh "sudo node -v"
                 sh "sudo npm -v"
             }
+        }
         stage("Deploy") {
             agent { label 'ubuntu_jenkins' }
             steps {
