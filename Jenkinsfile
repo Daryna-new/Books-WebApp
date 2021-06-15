@@ -21,6 +21,14 @@ pipeline {
                 sh "sudo rm -rf /var/www/jenkins-react-app"
                 sh "sudo cp -r ${WORKSPACE}/ /var/www/jenkins-react-app/"
             }
+         stage("Docker") {
+            agent { label 'ubuntu_jenkins' }
+            steps {
+                sh "sudo docker stop $(sudo docker ps -qa)"
+                sh "cd /var/www/jenkins-react-app"
+                sh "sudo docker build -t dockerized-react ."
+                sh "sudo docker run --rm -d -p 80:80 --name web-app dockerized-react"
+            }
         }
     }
 }
