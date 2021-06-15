@@ -19,7 +19,7 @@ pipeline {
             agent { label 'ubuntu_jenkins' }
             steps {
                 sh "sudo rm -rf /var/www/jenkins-react-app"
-                sh "sudo cp -r ${WORKSPACE}/ /var/www/jenkins-react/"
+                sh "sudo cp -r ${WORKSPACE}/ /var/www/jenkins-react-app/"
             }
         }
     }
