@@ -40,10 +40,5 @@ pipeline {
                 sh "docker push dockreact:latest"
             }
         }
-    post {
-         always {
-               sh "docker logout"
-         }
-    }
-}
+   }
 }
