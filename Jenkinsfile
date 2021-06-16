@@ -25,7 +25,7 @@ pipeline {
          stage("Docker") {
             agent { label 'ubuntu_jenkins' }
             steps {
-                sh "sudo docker stop `sudo docker ps -aq`"
+                
                 sh "cd /var/www/jenkins-react-app"
                 sh "sudo docker build -t dockreact ."
                 sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact"
