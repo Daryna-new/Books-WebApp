@@ -37,7 +37,7 @@ pipeline {
         stage("Docker image push") {
             agent { label 'ubuntu_jenkins' }
             steps {
-                sh "docker push dockreact:latest"
+                sh "sudo docker push dockreact:latest"
             }
         }
    }
