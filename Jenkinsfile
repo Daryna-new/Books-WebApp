@@ -1,8 +1,5 @@
 pipeline {
      agent none
-     environment {
-        DOCKERHUB_CREDENTIALS = credentials('fdary-dockerhub')
-     }
      stages {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
@@ -34,11 +31,6 @@ pipeline {
                 sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact:latest"
             }
         }
-        stage("Docker image push") {
-            agent { label 'ubuntu_jenkins' }
-            steps {
-                sh "sudo docker push dockreact:latest"
-            }
-        }
+        
    }
 }
