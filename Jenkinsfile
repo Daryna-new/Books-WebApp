@@ -1,5 +1,8 @@
 pipeline {
      agent none
+     environment {
+        DOCKERHUB_CREDENTIALS = credentials('fdary-dockerhub')
+     }
      stages {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
@@ -27,9 +30,20 @@ pipeline {
             steps {
                 sh "sudo docker stop `sudo docker ps -aq`"
                 sh "cd /var/www/jenkins-react-app"
-                sh "sudo docker build -t dockreact ."
-                sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact"
+                sh "sudo docker build -t dockreact:latest ."
+                sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact:latest"
             }
         }
+        stage("Docker image push") {
+            agent { label 'ubuntu_jenkins' }
+            steps {
+                sh "docker push dockreact:latest"
+            }
+        }
+    post {
+         always {
+               sh "docker logout"
+         }
     }
+}
 }
