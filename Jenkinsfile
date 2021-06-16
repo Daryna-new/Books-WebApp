@@ -1,7 +1,7 @@
 pipeline {
      agent none
      environment {
-        DOCKERHUB_CREDENTIALS = credentials('fdary-dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('fdary-dh')
      }
      stages {
         stage("Build") {
