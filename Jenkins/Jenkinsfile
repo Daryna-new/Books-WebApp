@@ -4,6 +4,8 @@ pipeline {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
             steps {
+                sh "sudo apt-get update"
+                sh "sudo apt-get -y install nodejs"
                 sh "sudo apt-get -y install npm"
                 sh "sudo npm run build"
             }
