@@ -7,7 +7,7 @@ pipeline {
                 sh "sudo apt-get update"
                 sh "sudo apt-get -y install nodejs"
                 sh "sudo apt-get -y install aptitude"
-                sh "sudo apt-get -y install npm"
+                
                 sh "sudo npm run build"
             }
         }
