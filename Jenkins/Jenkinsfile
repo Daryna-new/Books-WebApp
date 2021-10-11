@@ -4,7 +4,7 @@ pipeline {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
             steps {
-                sh "sudo npm install"
+                sh "sudo apt-get install npm"
                 sh "sudo npm run build"
             }
         }
