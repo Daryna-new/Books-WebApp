@@ -1,9 +1,6 @@
 pipeline {
      agent none
-     environment {
-          registry = 'fdary/dockreact:latest'
-          registryCredential ='dockerhub_id'
-     }
+     
      stage('Checkout') {
         steps {
             git branch: 'main',                
@@ -42,14 +39,6 @@ pipeline {
                 sh "sudo systemctl stop nginx"
                 sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact:latest"
             }
-        }
-         stage("DockerHub") {
-         agent { label 'ubuntu_jenkins' }
-         steps {
-              withDockerRegistry([credentialsId: "dockerhub_id", url: ""]) {
-              sh "sudo docker push fdary/dockreact:latest"
-              }
-            }
-        }      
+        } 
    }
 }
