@@ -5,8 +5,7 @@ pipeline {
           registryCredential ='dockerhub_id'
      }
      stages {
-        stage("Checkout") {
-            agent { label 'ubuntu_jenkins' }
+        stage("Checkout") {            
             steps {
                git branch: 'main',
                     url:'https://github.com/daryf/Books-WebApp.git'
