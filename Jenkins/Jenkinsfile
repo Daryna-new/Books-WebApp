@@ -28,6 +28,7 @@ pipeline {
                 sh "sudo docker stop `sudo docker ps -aq`"
                 sh "cd /var/www/jenkins-react-app"
                 sh "sudo docker build -t dockreact:latest ."
+                sh "sudo systemctl stop nginx"
                 sh "sudo docker run --rm -d -p 80:80 --name web-app dockreact:latest"
             }
         }
