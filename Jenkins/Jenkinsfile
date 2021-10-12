@@ -1,14 +1,15 @@
 pipeline {
      agent none
      
-     stage('Checkout') {
+     
+     stages {
+        stage("Checkout") {
         steps {
             git branch: 'main',                
                 url: 'https://github.com/daryf/Books-WebApp.git'
             sh "ls -lat"
         }
     }
-     stages {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
             steps {
