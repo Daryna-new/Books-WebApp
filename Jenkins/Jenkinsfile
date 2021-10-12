@@ -1,5 +1,9 @@
 pipeline {
      agent none
+     environment {
+          registry = 'fdary/dockreact:latest'
+          registryCredential ='dockerhub_id'
+     }
      stages {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
@@ -35,6 +39,9 @@ pipeline {
          stage("DockerHub") {
          agent { label 'ubuntu_jenkins' }
          steps {
+              withDockerRegistry([credentialsId: "dockerhub_id", url: ""]) {
+              sh "sudo docker push fdary/dockreact:latest"
+              }
             }
         }      
    }
