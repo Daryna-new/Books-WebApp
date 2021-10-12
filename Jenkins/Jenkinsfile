@@ -7,7 +7,6 @@ pipeline {
         steps {
             git branch: 'main',                
                 url: 'https://github.com/daryf/Books-WebApp.git'
-            sh "ls -lat"
         }
     }
         stage("Build") {
