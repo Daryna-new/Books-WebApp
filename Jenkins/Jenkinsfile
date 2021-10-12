@@ -5,6 +5,14 @@ pipeline {
           registryCredential ='dockerhub_id'
      }
      stages {
+        stage("Checkout") {
+            agent { label 'ubuntu_jenkins' }
+            steps {
+               git branch: 'main',
+                    url:'https://github.com/daryf/Books-WebApp.git'
+            }
+        }
+     stages {
         stage("Build") {
             agent { label 'ubuntu_jenkins' }
             steps {
